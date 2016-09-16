@@ -1,2 +1,1 @@
-# BambooRemote
-Bamboo Remote Agent Build
+# ubuntu-maven-git-jdk8-tomcat8-nano
