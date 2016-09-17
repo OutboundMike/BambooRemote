@@ -11,7 +11,7 @@ ENV BAMBOO_VERSION=5.7.2
 RUN apt-get update
 
 # install wget to download files
-RUN apt-get install --quiet --yes --force-yes libtcnative-1 xmlstarlet add-apt-repository nano ssh wget curl sed ruby unzip git \
+RUN apt-get install -Y libtcnative-1 xmlstarlet add-apt-repository nano ssh wget curl sed ruby unzip git \
  && apt-get clean
 
 # ------ Java ------
