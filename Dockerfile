@@ -85,7 +85,7 @@ RUN apt-get update
 RUN apt-get --quiet --yes install openjdk-8-jdk
 
 # set java environment variable
-ENV JAVA_HOME  /usr/lib/jvm/java-8-openjdk-amd64
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV PATH $JAVA_HOME/bin:$PATH
 
 # configure symbolic links for the java and javac executables
