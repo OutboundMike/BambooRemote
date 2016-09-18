@@ -16,7 +16,6 @@ RUN apt-get --quiet --yes install libtcnative-1 xmlstarlet python-software-prope
 
 # ------ Java ------
 RUN \
-	add-apt-repository -y ppa:webupd8team/java && \
 	apt-get update && \
 	apt-get --quiet --yes install oracle-java8-installer && \
 	rm -rf /var/lib/apt/lists/* && \
