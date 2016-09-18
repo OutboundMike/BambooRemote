@@ -14,17 +14,6 @@ RUN apt-get update
 RUN apt-get --quiet --yes install libtcnative-1 xmlstarlet python-software-properties nano ssh wget curl sed ruby unzip git \
  && apt-get clean
 
-# ------ Java ------
-RUN \
-	apt-get update && \
-	apt-get --quiet --yes install oracle-java8-installer && \
-	rm -rf /var/lib/apt/lists/* && \
-	rm -rf /var/cache/oracle-jdk8-installer
-
-ENV LANG C.UTF-8
-ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
-ENV JAVA8_HOME /usr/lib/jvm/java-8-oracle
-
 
 # ------ Gradle ------
 ENV GRADLE_VERSION 2.5
