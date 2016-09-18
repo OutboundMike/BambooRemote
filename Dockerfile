@@ -11,7 +11,7 @@ ENV BAMBOO_VERSION=5.7.2
 RUN apt-get update
 
 # install wget to download files
-RUN apt-get --quiet --yes install libtcnative-1 xmlstarlet python-software-properties nano ssh wget curl sed ruby unzip git \
+RUN apt-get --quiet --yes install libtcnative-1 xmlstarlet software-properties-common python-software-properties nano ssh wget curl sed ruby unzip git \
  && apt-get clean
 
 
@@ -79,20 +79,13 @@ RUN ln -s /opt/maven/bin/mvn /usr/local/bin
 RUN rm -f /tmp/$maven_filename
 ENV MAVEN_HOME /opt/maven
 
-# install nano
-RUN apt-get install -y nano
-
-ENV java_jdk_filename jdk-8u45-linux-x64.tar.gz
-ENV java_version jdk1.8.0_45
-
-# download java JDK 1.8.0_45
-RUN wget --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" -O /tmp/$java_jdk_filename http://download.oracle.com/otn-pub/java/jdk/8u45-b14/$java_jdk_filename
-
-# install jdk
-RUN mkdir /opt/java-jdk-8 && tar -zxf /tmp/$java_jdk_filename -C /opt/java-jdk-8
+# install java 8
+RUN add-apt-repository ppa:openjdk-r/ppa
+RUN apt-get update
+RUN apt-get --quiet --yes install openjdk-8-jdk
 
 # set java environment variable
-ENV JAVA_HOME /opt/java-jdk-8/$java_version
+ENV JAVA_HOME  /usr/lib/jvm/java-8-openjdk-amd64
 ENV PATH $JAVA_HOME/bin:$PATH
 
 # configure symbolic links for the java and javac executables
