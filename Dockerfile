@@ -11,14 +11,14 @@ ENV BAMBOO_VERSION=5.7.2
 RUN apt-get update
 
 # install wget to download files
-RUN apt-get install -Y libtcnative-1 xmlstarlet add-apt-repository nano ssh wget curl sed ruby unzip git \
+RUN apt-get -y install libtcnative-1 xmlstarlet add-apt-repository nano ssh wget curl sed ruby unzip git \
  && apt-get clean
 
 # ------ Java ------
 RUN \
 	add-apt-repository -y ppa:webupd8team/java && \
 	apt-get update && \
-	apt-get install -y oracle-java8-installer && \
+	apt-get -y install oracle-java8-installer && \
 	rm -rf /var/lib/apt/lists/* && \
 	rm -rf /var/cache/oracle-jdk8-installer
 
