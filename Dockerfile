@@ -72,24 +72,27 @@ RUN dpkg --add-architecture i386 && \
 	apt-get clean && \
 	rm -rf /var/lib/apt/lists/*
 
-# install maven
-RUN tar xzf /tmp/$maven_filename -C /opt/
-RUN ln -s /opt/apache-maven-3.3.9 /opt/maven
-RUN ln -s /opt/maven/bin/mvn /usr/local/bin
-RUN rm -f /tmp/$maven_filename
-ENV MAVEN_HOME /opt/maven
-
 # install java 8
 RUN add-apt-repository ppa:openjdk-r/ppa
 RUN apt-get update
 RUN apt-get --quiet --yes install openjdk-8-jdk
 
 # set java environment variable
+RUN export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+RUN PATH $JAVA_HOME/bin:$PATH
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV PATH $JAVA_HOME/bin:$PATH
 
 # configure symbolic links for the java and javac executables
 RUN update-alternatives --install /usr/bin/java java $JAVA_HOME/bin/java 20000 && update-alternatives --install /usr/bin/javac javac $JAVA_HOME/bin/javac 20000
+
+
+# install maven
+RUN tar xzf /tmp/$maven_filename -C /opt/
+RUN ln -s /opt/apache-maven-3.3.9 /opt/maven
+RUN ln -s /opt/maven/bin/mvn /usr/local/bin
+RUN rm -f /tmp/$maven_filename
+ENV MAVEN_HOME /opt/maven
 
 # ------ Python dependencies ------
 RUN pip install Pillow
