@@ -87,13 +87,6 @@ ENV PATH $JAVA_HOME/bin:$PATH
 RUN update-alternatives --install /usr/bin/java java $JAVA_HOME/bin/java 20000 && update-alternatives --install /usr/bin/javac javac $JAVA_HOME/bin/javac 20000
 
 
-# install maven
-RUN tar xzf /tmp/$maven_filename -C /opt/
-RUN ln -s /opt/apache-maven-3.3.9 /opt/maven
-RUN ln -s /opt/maven/bin/mvn /usr/local/bin
-RUN rm -f /tmp/$maven_filename
-ENV MAVEN_HOME /opt/maven
-
 # ------ Python dependencies ------
 RUN pip install Pillow
 
