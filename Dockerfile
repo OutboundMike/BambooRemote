@@ -55,9 +55,10 @@ RUN wget http://mirror.serversupportforum.de/apache/maven/maven-3/3.3.9/binaries
   tar -zxf apache-maven-3.3.9-bin.tar.gz && \
   sudo cp -R apache-maven-3.3.9 /usr/local && \
   sudo ln -s /usr/local/apache-maven-3.3.9/bin/mvn /usr/bin/mvn
+  
 RUN echo ${BAMBOO_SERVER}/agentInstaller/atlassian-bamboo-agent-installer-${BAMBOO_VERSION}.jar
 RUN wget ${BAMBOO_SERVER}/agentInstaller/atlassian-bamboo-agent-installer-${BAMBOO_VERSION}.jar 
-RUN cp atlassian-bamboo-agent-installer-${BAMBOO_VERSION}.jar /opt
+RUN cp atlassian-bamboo-agent-installer-${BAMBOO_VERSION}.jar /root
 RUN mkdir -p /root/bamboo-agent-home/bin/
 RUN touch /root/bamboo-agent-home/bin/bamboo-capabilities.properties
 RUN echo 'system.git.executable=/usr/bin/git' >> /root/bamboo-agent-home/bin/bamboo-capabilities.properties
