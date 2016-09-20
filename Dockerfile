@@ -21,7 +21,7 @@ RUN apt-get --quiet --yes install openjdk-8-jdk
 
 # set java environment variable
 RUN export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-RUN PATH $JAVA_HOME/bin:$PATH
+RUN echo PATH $JAVA_HOME/bin:$PATH
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV PATH $JAVA_HOME/bin:$PATH
 
