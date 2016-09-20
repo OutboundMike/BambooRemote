@@ -98,12 +98,12 @@ RUN pip install awscli
 CMD java -jar atlassian-bamboo-agent-installer-${BAMBOO_VERSION}.jar ${BAMBOO_SERVER}
 
 # download tomcat 8
-RUN wget --no-verbose -O /tmp/apache-tomcat-8.5.4.tar.gz http://ftp.wayne.edu/apache/tomcat/tomcat-8/v8.5.4/bin/apache-tomcat-8.5.4.tar.gz
+RUN wget --no-verbose -O /tmp/apache-tomcat-8.5.5.tar.gz http://www-eu.apache.org/dist/tomcat/tomcat-8/v8.5.5/bin/apache-tomcat-8.5.5.tar.gz
 
 # install tomcat 8
-RUN tar xzf /tmp/apache-tomcat-8.5.4.tar.gz -C /opt/
+RUN tar xzf /tmp/apache-tomcat-8.5.5.tar.gz -C /opt/
 
-ENV CATALINA_HOME /opt/apache-tomcat-8.5.4
+ENV CATALINA_HOME /opt/apache-tomcat-8.5.5
 ENV PATH $CATALINA_HOME/bin:$PATH
 
 ADD tomcat-users.xml $CATALINA_HOME/conf/
