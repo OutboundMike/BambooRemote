@@ -110,4 +110,4 @@ ADD tomcat-users.xml $CATALINA_HOME/conf/
 
 EXPOSE 8080
 
-RUN $CATALINA_HOME/bin/catalina.sh
+RUN $CATALINA_HOME/bin/catalina.sh run
