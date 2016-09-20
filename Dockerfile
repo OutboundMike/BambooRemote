@@ -14,6 +14,20 @@ RUN apt-get update
 RUN apt-get --quiet --yes install libtcnative-1 xmlstarlet software-properties-common python-software-properties nano ssh wget curl sed ruby unzip git \
  && apt-get clean
 
+# install java 8
+RUN add-apt-repository ppa:openjdk-r/ppa
+RUN apt-get update
+RUN apt-get --quiet --yes install openjdk-8-jdk
+
+# set java environment variable
+RUN export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+RUN PATH $JAVA_HOME/bin:$PATH
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
+ENV PATH $JAVA_HOME/bin:$PATH
+
+# configure symbolic links for the java and javac executables
+RUN update-alternatives --install /usr/bin/java java $JAVA_HOME/bin/java 20000 && update-alternatives --install /usr/bin/javac javac $JAVA_HOME/bin/javac 20000
+
 
 # ------ Gradle ------
 ENV GRADLE_VERSION 2.5
@@ -71,20 +85,6 @@ RUN dpkg --add-architecture i386 && \
 	libjpeg8-dev zlib1g-dev && \
 	apt-get clean && \
 	rm -rf /var/lib/apt/lists/*
-
-# install java 8
-RUN add-apt-repository ppa:openjdk-r/ppa
-RUN apt-get update
-RUN apt-get --quiet --yes install openjdk-8-jdk
-
-# set java environment variable
-RUN export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-RUN PATH $JAVA_HOME/bin:$PATH
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
-ENV PATH $JAVA_HOME/bin:$PATH
-
-# configure symbolic links for the java and javac executables
-RUN update-alternatives --install /usr/bin/java java $JAVA_HOME/bin/java 20000 && update-alternatives --install /usr/bin/javac javac $JAVA_HOME/bin/javac 20000
 
 
 # ------ Python dependencies ------
