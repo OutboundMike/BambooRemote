@@ -11,7 +11,7 @@ ENV BAMBOO_VERSION=5.7.2
 RUN apt-get update
 
 # install critical packages
-RUN apt-get --quiet --yes install libtcnative-1 nginx rubygems xclip openssl imagemagick xmlstarlet software-properties-common python-software-properties nano ssh wget curl sed ruby unzip git \
+RUN apt-get --quiet --yes install libtcnative-1 nginx xclip openssl imagemagick xmlstarlet software-properties-common python-software-properties nano ssh wget curl sed ruby unzip git \
  && apt-get clean
 
 # install compass
