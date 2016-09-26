@@ -14,10 +14,7 @@ RUN apt-get update
 RUN apt-get --quiet --yes install libtcnative-1 nginx xclip openssl imagemagick xmlstarlet software-properties-common python-software-properties nano ssh wget curl sed ruby unzip git \
  && apt-get clean
 
-# install compass
-RUN gem install compass
-
-# install Ant and Ivy
+# install Ant
 RUN apt-get --quiet --yes install python-software-properties$
 RUN apt-get update
 RUN apt-get --quiet --yes install ant
