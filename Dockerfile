@@ -28,6 +28,11 @@ ENV PATH $JAVA_HOME/bin:$PATH
 # configure symbolic links for the java and javac executables
 RUN update-alternatives --install /usr/bin/java java $JAVA_HOME/bin/java 20000 && update-alternatives --install /usr/bin/javac javac $JAVA_HOME/bin/javac 20000
 
+# ------ MariaDB -----
+
+RUN apt-get update
+RUN apt-get --quiet --yes install mariadb-server
+
 
 # ------ Gradle ------
 ENV GRADLE_VERSION 2.5
@@ -51,6 +56,7 @@ RUN sh -c 'echo "deb https://sdkrepo.atlassian.com/debian/ stable contrib" >>/et
   apt-get install --quiet --yes --no-install-recommends atlassian-plugin-sdk && \
   atlas-version && \
   mkdir -p /root/bamboo-agent-home/ 
+
 RUN wget http://mirror.serversupportforum.de/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz && \
   tar -zxf apache-maven-3.3.9-bin.tar.gz && \
   sudo cp -R apache-maven-3.3.9 /usr/local && \
