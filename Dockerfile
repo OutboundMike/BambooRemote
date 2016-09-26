@@ -10,9 +10,18 @@ ENV BAMBOO_VERSION=5.7.2
 # update dpkg repositories
 RUN apt-get update
 
-# install wget to download files
-RUN apt-get --quiet --yes install libtcnative-1 xmlstarlet software-properties-common python-software-properties nano ssh wget curl sed ruby unzip git \
+# install critical packages
+RUN apt-get --quiet --yes install libtcnative-1 nginx rubygems xclip openssl imagemagick xmlstarlet software-properties-common python-software-properties nano ssh wget curl sed ruby unzip git \
  && apt-get clean
+
+# install compass
+RUN gem install compass
+
+# install Ant and Ivy
+RUN apt-get --quiet --yes install python-software-properties$
+RUN apt-get update
+RUN apt-get --quiet --yes install ant
+
 
 # install java 8
 RUN add-apt-repository ppa:openjdk-r/ppa
